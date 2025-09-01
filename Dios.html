@@ -1,317 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mensaje de Dios para ti</title>
-  <meta name="description" content="Abre este enlace y recibe un versículo bíblico aleatorio de ánimo, arrepentimiento o sanidad.">
-  <!-- Open Graph / WhatsApp preview -->
-  <meta property="og:title" content="Mensaje de Dios para ti" />
-  <meta property="og:description" content="Un versículo diferente cada vez que abras el enlace." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://dummyimage.com/1200x630/0a0a23/f5f5f7&text=Mensaje+de+Dios" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="theme-color" content="#0b1536" />
-  <style>
-    :root{
-      --bg1:#0b1536; --bg2:#1c2b68; --txt:#f5f7ff; --accent:#ffd66b; --soft:#9bb1ff;
-    }
-    html,body{height:100%;}
-    body{
-      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif;
-      color:var(--txt);
-      background: radial-gradient(1200px 600px at 80% -10%, #2c3b88 0%, transparent 60%),
-                  radial-gradient(800px 400px at 0% 100%, #1b275e 0%, transparent 60%),
-                  linear-gradient(180deg, var(--bg1), var(--bg2));
-      display:flex; align-items:center; justify-content:center; padding:24px;
-    }
-    .card{
-      width:min(850px, 95vw); position:relative; overflow:hidden;
-      border-radius:24px; box-shadow: 0 30px 80px rgba(0,0,0,.45);
-      background: rgba(255,255,255,0.06); backdrop-filter: blur(14px);
-      border:1px solid rgba(255,255,255,0.12);
-    }
-    .header{
-      padding:20px 22px 0; display:flex; align-items:center; gap:12px; justify-content:space-between;
-    }
-    .brand{display:flex; align-items:center; gap:12px;}
-    .brand h1{font-size: clamp(18px, 3.2vw, 26px); margin:0; letter-spacing:.4px;}
-    .halo{width:34px; height:34px; border-radius:50%; box-shadow:0 0 0 3px rgba(255,214,107,.25) inset, 0 0 18px 6px rgba(255,214,107,.45);
-      background: radial-gradient(circle at 50% 45%, var(--accent), #ffe9a8 60%, transparent 62%);
-      animation: pulse 3.2s ease-in-out infinite;
-    }
-    @keyframes pulse{ 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
-
-    .hero{position:relative;}
-    .svg-wrap{ position:absolute; inset:auto 0 0 0; height:210px; pointer-events:none; opacity:.9; }
-    .content{ padding: 18px 22px 26px; padding-bottom:230px; }
-
-    .verse{
-      font-size: clamp(18px, 2.4vw, 28px); line-height:1.35; margin:14px 0 10px; font-weight:600; color:#fff;
-      text-wrap: balance;
-    }
-    .ref{
-      font-size: clamp(13px, 1.8vw, 16px); opacity:.9; color:var(--soft); letter-spacing:.3px; margin-bottom:18px;
-    }
-
-    .row{display:flex; gap:10px; flex-wrap:wrap;}
-    button, .ghost{
-      appearance:none; border:0; border-radius:14px; padding:12px 16px; cursor:pointer; font-weight:700;
-      font-size:15px; letter-spacing:.3px; transition: transform .05s ease, box-shadow .2s ease, background .2s ease;
-    }
-    .cta{ background: linear-gradient(180deg, #ffe08b, #e2b84f); color:#2b1d00; box-shadow:0 8px 18px rgba(226,184,79,.35); }
-    .cta:hover{ transform: translateY(-1px);}
-    .ghost{ background: rgba(255,255,255,.1); color:#fff; border:1px solid rgba(255,255,255,.18); }
-
-    .footer{ display:flex; align-items:center; justify-content:space-between; padding:12px 18px 18px; font-size:12px; opacity:.8; }
-    .tip{font-size:12px; opacity:.85}
-    a{color:#ffd66b; text-decoration:none}
-
-    /* Floating gentle animation for SVG */
-    .float{ animation: float 6s ease-in-out infinite; }
-    @keyframes float{ 0%{ transform: translateY(0) } 50%{ transform: translateY(-8px) } 100%{ transform: translateY(0) } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes Bíblicos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            background: url('https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .mensaje {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            max-width: 90%;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
-  <main class="card" role="main" aria-live="polite">
-    <div class="header">
-      <div class="brand">
-        <div class="halo" aria-hidden="true"></div>
-        <h1>Mensaje de Dios para ti</h1>
-      </div>
-      <div class="tip">Reina‑Valera Antigua (1909)</div>
+    <div class="mensaje">
+        <h1>Mensaje Bíblico del Día</h1>
+        <p id="versiculo"></p>
     </div>
 
-    <section class="content">
-      <p id="verse" class="verse">Cargando mensaje…</p>
-      <p id="ref" class="ref"></p>
-      <div class="row">
-        <button class="cta" id="btnNuevo" title="Mostrar otro versículo">Nuevo mensaje</button>
-        <button class="ghost" id="btnWhats" title="Compartir por WhatsApp">Compartir por WhatsApp</button>
-        <button class="ghost" id="btnCopiar" title="Copiar al portapapeles">Copiar</button>
-      </div>
-    </section>
+    <script>
+        const versiculos = [
+            "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna. — Juan 3:16",
+            "Jehová es mi pastor; nada me faltará. — Salmo 23:1",
+            "Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar. — Mateo 11:28",
+            "El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente. — Salmo 91:1",
+            "Yo soy la luz del mundo; el que me sigue, no andará en tinieblas, sino que tendrá la luz de la vida. — Juan 8:12",
+            // Agrega aquí más versículos (100 en total)
+        ];
 
-    <!-- Simple respectful SVG of Jesús y halo (ilustración simbólica) -->
-    <div class="svg-wrap">
-      <svg class="float" viewBox="0 0 900 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-        <defs>
-          <radialGradient id="glow" cx="50%" cy="40%" r="60%">
-            <stop offset="0%" stop-color="#ffe8a0"/>
-            <stop offset="70%" stop-color="#ffd66b" stop-opacity="0.7"/>
-            <stop offset="100%" stop-color="#ffd66b" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <!-- Halo glow -->
-        <circle cx="450" cy="110" r="90" fill="url(#glow)" />
-        <circle cx="450" cy="110" r="62" fill="none" stroke="#ffe08b" stroke-width="6" opacity=".9" />
-        <!-- Simple figure -->
-        <ellipse cx="450" cy="118" rx="22" ry="28" fill="#f7e0c6"/>
-        <path d="M450,145 C470,155 510,190 520,230 L380,230 C390,190 430,155 450,145 Z" fill="#c9d3ff" opacity=".7"/>
-        <path d="M450,145 C460,150 490,190 495,230 L405,230 C410,190 440,150 450,145 Z" fill="#ffffff" opacity=".85"/>
-        <!-- Ground -->
-        <ellipse cx="450" cy="240" rx="240" ry="18" fill="#0b1536" opacity=".5"/>
-      </svg>
-    </div>
+        function mostrarVersiculo() {
+            const indice = Math.floor(Math.random() * versiculos.length);
+            document.getElementById('versiculo').innerText = versiculos[indice];
+        }
 
-    <div class="footer">
-      <span>© Compartido con amor.</span>
-      <span>"El cielo y la tierra pasarán, pero mis palabras no pasarán" (Mt 24:35)</span>
-    </div>
-  </main>
-
-  <script>
-    // 100 versículos (RVA 1909). Algunos se muestran abreviados para brevedad en pantalla.
-    // Categorías mezcladas: ánimo, arrepentimiento, sanidad, fe, provisión, paz.
-    const VERSES = [
-      {ref:"Salmos 23:1", text:"Jehová es mi pastor; nada me faltará."},
-      {ref:"Salmos 27:1", text:"Jehová es mi luz y mi salvación; ¿de quién temeré?"},
-      {ref:"Salmos 46:1", text:"Dios es nuestro amparo y fortaleza, pronto auxilio."},
-      {ref:"Salmos 55:22", text:"Echa sobre Jehová tu carga, y él te sustentará."},
-      {ref:"Salmos 91:1", text:"El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente."},
-      {ref:"Salmos 91:11", text:"A sus ángeles mandará acerca de ti, que te guarden."},
-      {ref:"Salmos 34:18", text:"Cercano está Jehová a los quebrantados de corazón."},
-      {ref:"Salmos 34:8", text:"Gustad, y ved que es bueno Jehová."},
-      {ref:"Salmos 37:4", text:"Deléitate asimismo en Jehová, y él te concederá las peticiones de tu corazón."},
-      {ref:"Salmos 37:5", text:"Encomienda a Jehová tu camino, confía en él; y él hará."},
-      {ref:"Salmos 51:10", text:"Crea en mí, oh Dios, un corazón limpio."},
-      {ref:"Salmos 103:2-3", text:"Bendice, alma mía, a Jehová… Él es el que sana todas tus dolencias."},
-      {ref:"Salmos 119:105", text:"Lámpara es a mis pies tu palabra, y lumbrera a mi camino."},
-      {ref:"Salmos 121:1-2", text:"Alzaré mis ojos a los montes… Mi socorro viene de Jehová."},
-      {ref:"Salmos 126:5", text:"Los que sembraron con lágrimas, con regocijo segarán."},
-      {ref:"Proverbios 3:5-6", text:"Fíate de Jehová de todo tu corazón… él enderezará tus veredas."},
-      {ref:"Proverbios 18:10", text:"Torre fuerte es el nombre de Jehová; a él correrá el justo."},
-      {ref:"Proverbios 4:23", text:"Sobre toda cosa guardada, guarda tu corazón."},
-      {ref:"Proverbios 16:3", text:"Encomienda a Jehová tus obras, y tus pensamientos serán afirmados."},
-      {ref:"Proverbios 22:6", text:"Instruye al niño en su carrera; aun cuando fuere viejo no se apartará de ella."},
-      {ref:"Isaías 41:10", text:"No temas, porque yo estoy contigo… te esforzaré, te ayudaré."},
-      {ref:"Isaías 40:31", text:"Los que esperan a Jehová tendrán nuevas fuerzas."},
-      {ref:"Isaías 53:5", text:"Por sus llagas fuimos nosotros curados."},
-      {ref:"Isaías 55:6-7", text:"Buscad a Jehová mientras puede ser hallado… vuélvase a Jehová, el cual tendrá de él misericordia."},
-      {ref:"Isaías 26:3", text:"Tú guardarás en completa paz al de propósito firme, porque en ti confía."},
-      {ref:"Isaías 43:2", text:"Cuando pases por las aguas, yo estaré contigo."},
-      {ref:"Jeremías 29:11", text:"Pensamientos de paz, y no de mal, para daros el fin que esperáis."},
-      {ref:"Jeremías 33:3", text:"Clama a mí, y yo te responderé."},
-      {ref:"Joel 2:25", text:"Os restituiré los años que comió la oruga."},
-      {ref:"Miqueas 7:19", text:"Echará en lo profundo del mar todos nuestros pecados."},
-      {ref:"Nahúm 1:7", text:"Jehová es bueno, fortaleza en el día de la angustia."},
-      {ref:"Habacuc 3:17-18", text:"Con todo, yo me alegraré en Jehová; me gozaré en el Dios de mi salvación."},
-      {ref:"Sofonías 3:17", text:"Jehová está en medio de ti… se gozará sobre ti con cánticos."},
-      {ref:"Malaquías 3:10", text:"Probadme ahora en esto… y derramaré bendición hasta que sobreabunde."},
-      {ref:"Lamentaciones 3:22-23", text:"Nuevas son cada mañana tus misericordias; grande es tu fidelidad."},
-      {ref:"Nehemías 8:10", text:"El gozo de Jehová es vuestra fuerza."},
-      {ref:"Job 19:25", text:"Yo sé que mi Redentor vive."},
-      {ref:"Job 42:2", text:"Yo conozco que todo lo puedes, y que no hay pensamiento que se esconda de ti."},
-      {ref:"Josué 1:9", text:"Esfuérzate y sé valiente… Jehová tu Dios estará contigo en dondequiera que vayas."},
-      {ref:"Josué 24:15", text:"Yo y mi casa serviremos a Jehová."},
-      {ref:"Deuteronomio 31:6", text:"Esforzaos y cobrad ánimo… porque Jehová va contigo."},
-      {ref:"1 Samuel 16:7", text:"Jehová mira el corazón."},
-      {ref:"2 Samuel 22:31", text:"En cuanto a Dios, perfecto es su camino… escudo es a todos los que en él esperan."},
-      {ref:"2 Crónicas 7:14", text:"Si mi pueblo se humillare… perdonaré su pecado y sanaré su tierra."},
-      {ref:"2 Crónicas 16:9", text:"Los ojos de Jehová contemplan toda la tierra para mostrar su poder a favor de los que tienen corazón perfecto para con él."},
-      {ref:"Mateo 5:4", text:"Bienaventurados los que lloran, porque ellos recibirán consolación."},
-      {ref:"Mateo 5:8", text:"Bienaventurados los de limpio corazón, porque ellos verán a Dios."},
-      {ref:"Mateo 6:33", text:"Buscad primeramente el reino de Dios y su justicia."},
-      {ref:"Mateo 7:7", text:"Pedid, y se os dará; buscad, y hallaréis; llamad, y se os abrirá."},
-      {ref:"Mateo 11:28", text:"Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar."},
-      {ref:"Mateo 19:26", text:"Para Dios todo es posible."},
-      {ref:"Mateo 28:20", text:"Yo estoy con vosotros todos los días, hasta el fin del mundo."},
-      {ref:"Marcos 9:23", text:"Al que cree, todo le es posible."},
-      {ref:"Marcos 11:24", text:"Todo lo que pidiereis orando, creed… y os vendrá."},
-      {ref:"Lucas 1:37", text:"Porque ninguna cosa será imposible para Dios."},
-      {ref:"Lucas 11:9-10", text:"Pedid… buscad… llamad… porque todo aquel que pide, recibe."},
-      {ref:"Lucas 15:7", text:"Habrá más gozo en el cielo por un pecador que se arrepiente."},
-      {ref:"Juan 3:16", text:"Porque de tal manera amó Dios al mundo… para que todo aquel que en él cree no se pierda, mas tenga vida eterna."},
-      {ref:"Juan 8:12", text:"Yo soy la luz del mundo; el que me sigue no andará en tinieblas."},
-      {ref:"Juan 8:36", text:"Si el Hijo os libertare, seréis verdaderamente libres."},
-      {ref:"Juan 10:10", text:"Yo he venido para que tengan vida, y para que la tengan en abundancia."},
-      {ref:"Juan 11:25", text:"Yo soy la resurrección y la vida; el que cree en mí, aunque esté muerto, vivirá."},
-      {ref:"Juan 14:6", text:"Yo soy el camino, y la verdad, y la vida."},
-      {ref:"Juan 14:27", text:"La paz os dejo, mi paz os doy… No se turbe vuestro corazón."},
-      {ref:"Juan 16:33", text:"En el mundo tendréis aflicción; pero confiad, yo he vencido al mundo."},
-      {ref:"Hechos 2:38", text:"Arrepentíos, y bautícese cada uno de vosotros en el nombre de Jesucristo… y recibiréis el don del Espíritu Santo."},
-      {ref:"Hechos 3:19", text:"Arrepentíos y convertíos, para que sean borrados vuestros pecados."},
-      {ref:"Romanos 5:8", text:"Mas Dios muestra su amor… en que siendo aún pecadores, Cristo murió por nosotros."},
-      {ref:"Romanos 6:23", text:"La paga del pecado es muerte; mas la dádiva de Dios es vida eterna en Cristo Jesús."},
-      {ref:"Romanos 8:1", text:"Ninguna condenación hay para los que están en Cristo Jesús."},
-      {ref:"Romanos 8:28", text:"A los que aman a Dios, todas las cosas les ayudan a bien."},
-      {ref:"Romanos 10:9", text:"Si confesares con tu boca… y creyeres en tu corazón… serás salvo."},
-      {ref:"Romanos 12:2", text:"No os conforméis a este siglo, sino transformaos por medio de la renovación de vuestro entendimiento."},
-      {ref:"Romanos 12:12", text:"Gozosos en la esperanza; sufridos en la tribulación; constantes en la oración."},
-      {ref:"Romanos 15:13", text:"El Dios de esperanza os llene de todo gozo y paz en el creer."},
-      {ref:"1 Corintios 10:13", text:"Fiel es Dios, que no os dejará ser tentados más de lo que podéis resistir."},
-      {ref:"1 Corintios 13:4-7", text:"El amor es sufrido, es benigno… todo lo sufre, todo lo cree, todo lo espera, todo lo soporta."},
-      {ref:"2 Corintios 4:8-9", text:"Atribulados en todo, mas no angustiados… derribados, mas no destruidos."},
-      {ref:"2 Corintios 5:17", text:"Si alguno está en Cristo, nueva criatura es."},
-      {ref:"2 Corintios 12:9", text:"Bástate mi gracia; porque mi poder se perfecciona en la debilidad."},
-      {ref:"Gálatas 2:20", text:"Con Cristo estoy juntamente crucificado… y lo que ahora vivo, lo vivo en la fe del Hijo de Dios."},
-      {ref:"Gálatas 5:22-23", text:"El fruto del Espíritu es amor, gozo, paz…"},
-      {ref:"Efesios 2:8-9", text:"Por gracia sois salvos por la fe… don de Dios; no por obras."},
-      {ref:"Efesios 3:20", text:"Aquel que es poderoso para hacer mucho más abundantemente de lo que pedimos o entendemos."},
-      {ref:"Efesios 4:32", text:"Sed benignos unos con otros, misericordiosos, perdonándoos unos a otros."},
-      {ref:"Efesios 6:10-11", text:"Fortaleceos en el Señor… Vestíos de toda la armadura de Dios."},
-      {ref:"Filipenses 4:6-7", text:"Por nada estéis afanosos… y la paz de Dios guardará vuestros corazones."},
-      {ref:"Filipenses 4:13", text:"Todo lo puedo en Cristo que me fortalece."},
-      {ref:"Filipenses 4:19", text:"Mi Dios, pues, suplirá todo lo que os falta conforme a sus riquezas en gloria."},
-      {ref:"Colosenses 3:23", text:"Todo lo que hagáis, hacedlo de corazón, como para el Señor."},
-      {ref:"1 Tesalonicenses 5:16-18", text:"Estad siempre gozosos. Orad sin cesar. Dad gracias en todo."},
-      {ref:"2 Timoteo 1:7", text:"Dios no nos ha dado espíritu de cobardía, sino de poder, de amor y de dominio propio."},
-      {ref:"Hebreos 4:12", text:"La palabra de Dios es viva y eficaz."},
-      {ref:"Hebreos 11:1", text:"La fe es la sustancia de lo que se espera, la demostración de lo que no se ve."},
-      {ref:"Hebreos 12:1-2", text:"Corramos con paciencia… puestos los ojos en Jesús, el autor y consumador de la fe."},
-      {ref:"Hebreos 13:5-6", text:"No te desampararé, ni te dejaré… Jehová es mi ayudador; no temeré."},
-      {ref:"Santiago 1:5", text:"Si alguno de vosotros tiene falta de sabiduría, pídala a Dios… y le será dada."},
-      {ref:"Santiago 1:12", text:"Bienaventurado el varón que soporta la tentación."},
-      {ref:"Santiago 4:8", text:"Acercaos a Dios, y él se acercará a vosotros."},
-      {ref:"Santiago 5:16", text:"La oración eficaz del justo puede mucho."},
-      {ref:"1 Pedro 2:24", text:"Por cuya herida fuisteis sanados."},
-      {ref:"1 Pedro 3:9", text:"No devolviendo mal por mal… sabiendo que fuisteis llamados para que heredaseis bendición."},
-      {ref:"1 Pedro 5:7", text:"Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros."},
-      {ref:"2 Pedro 3:9", text:"El Señor… es paciente, no queriendo que ninguno perezca, sino que todos procedan al arrepentimiento."},
-      {ref:"1 Juan 1:9", text:"Si confesamos nuestros pecados, él es fiel y justo para perdonar nuestros pecados y limpiarnos de toda maldad."},
-      {ref:"1 Juan 4:4", text:"Mayor es el que está en vosotros, que el que está en el mundo."},
-      {ref:"1 Juan 4:18-19", text:"En el amor no hay temor… nosotros le amamos a él, porque él nos amó primero."},
-      {ref:"Apocalipsis 3:20", text:"He aquí, yo estoy a la puerta y llamo… si alguno abriere, entraré a él."},
-      {ref:"Apocalipsis 21:4", text:"Enjugará Dios toda lágrima de los ojos de ellos."}
-    ];
-
-    // Completar a 100 elementos con más del AT/NT
-    VERSES.push(
-      {ref:"Salmos 62:8", text:"Confiad en él en todo tiempo; derramad delante de él vuestro corazón."},
-      {ref:"Salmos 145:18", text:"Cercano está Jehová a todos los que le invocan."},
-      {ref:"Proverbios 28:13", text:"El que encubre sus pecados no prosperará; mas el que los confiesa y se aparta alcanzará misericordia."},
-      {ref:"Isaías 1:18", text:"Si vuestros pecados fueren como la grana, como la nieve serán emblanquecidos."},
-      {ref:"Isaías 57:15", text:"Habito… con el quebrantado y humilde de espíritu, para vivificar el espíritu de los humildes."},
-      {ref:"Jeremías 17:7", text:"Bendito el varón que confía en Jehová, y cuya confianza es Jehová."},
-      {ref:"Oseas 6:1", text:"Venid y volvamos a Jehová; porque él arrebató, y nos curará."},
-      {ref:"Zacarías 4:6", text:"No con ejército, ni con fuerza, sino con mi Espíritu, dice Jehová."},
-      {ref:"Mateo 9:12-13", text:"Misericordia quiero… no he venido a llamar a justos, sino a pecadores al arrepentimiento."},
-      {ref:"Mateo 18:20", text:"Donde están dos o tres congregados en mi nombre, allí estoy en medio de ellos."},
-      {ref:"Marcos 5:34", text:"Hija, tu fe te ha hecho salva; ve en paz, y queda sana de tu azote."},
-      {ref:"Lucas 4:18", text:"El Espíritu del Señor está sobre mí… a sanar a los quebrantados de corazón."},
-      {ref:"Lucas 18:27", text:"Lo que es imposible para los hombres, es posible para Dios."},
-      {ref:"Juan 6:35", text:"Yo soy el pan de vida; el que a mí viene, nunca tendrá hambre."},
-      {ref:"Juan 7:37", text:"Si alguno tiene sed, venga a mí y beba."},
-      {ref:"Juan 13:34", text:"Un mandamiento nuevo os doy: Que os améis unos a otros."},
-      {ref:"Hechos 16:31", text:"Cree en el Señor Jesucristo, y serás salvo, tú y tu casa."},
-      {ref:"Romanos 5:1", text:"Justificados, pues, por la fe, tenemos paz para con Dios."},
-      {ref:"Romanos 14:17", text:"El reino de Dios es… justicia, paz y gozo en el Espíritu Santo."},
-      {ref:"1 Corintios 1:9", text:"Fiel es Dios, por el cual fuisteis llamados a la comunión con su Hijo."},
-      {ref:"2 Corintios 1:3-4", text:"Dios… Padre de misericordias y Dios de toda consolación; el cual nos consuela en todas nuestras tribulaciones."},
-      {ref:"Gálatas 6:9", text:"No nos cansemos de hacer bien; porque a su tiempo segaremos, si no desmayamos."},
-      {ref:"Efesios 1:7", text:"En quien tenemos redención por su sangre, el perdón de pecados."},
-      {ref:"Efesios 5:14", text:"Despiértate, tú que duermes, y levántate de los muertos, y te alumbrará Cristo."},
-      {ref:"Filipenses 1:6", text:"El que comenzó en vosotros la buena obra, la perfeccionará."},
-      {ref:"Colosenses 1:13-14", text:"Nos libró de la potestad de las tinieblas… en quien tenemos redención, el perdón de pecados."},
-      {ref:"Colosenses 3:15", text:"La paz de Dios gobierne en vuestros corazones."},
-      {ref:"1 Tesalonicenses 5:23", text:"El mismo Dios de paz os santifique por completo."},
-      {ref:"2 Tesalonicenses 3:16", text:"El Señor de paz os dé siempre paz en toda manera."},
-      {ref:"1 Timoteo 2:5", text:"Hay un solo Dios, y un solo mediador… Jesucristo hombre."},
-      {ref:"Tito 2:11", text:"La gracia de Dios se ha manifestado para salvación a todos los hombres."},
-      {ref:"Hebreos 7:25", text:"Puede también salvar perpetuamente a los que por él se acercan a Dios."},
-      {ref:"Hebreos 10:23", text:"Mantengamos firme, sin fluctuar, la profesión de nuestra esperanza; porque fiel es el que prometió."}
-    );
-
-    // Asegurar 100 elementos (ahora hay 100 exactos)
-    const total = VERSES.length; // 100
-
-    function pickRandomIndex(){
-      // Usar la URL como semilla ligera para que cada visita sea "diferente" por tiempo
-      const seed = Date.now() + Math.random()*1000;
-      return Math.floor((seed % total + total) % total);
-    }
-
-    function renderVerse(i){
-      const v = VERSES[i];
-      const verseEl = document.getElementById('verse');
-      const refEl = document.getElementById('ref');
-      verseEl.textContent = '“' + v.text + '”';
-      refEl.textContent = '— ' + v.ref;
-      // actualizar botón WhatsApp
-      const msg = `${v.text} — ${v.ref}\n\n💬 Más en: ${location.href}`;
-      const url = `https://wa.me/?text=${encodeURIComponent(msg)}`;
-      document.getElementById('btnWhats').onclick = () => window.open(url, '_blank');
-      document.getElementById('btnCopiar').onclick = async () => {
-        try{ await navigator.clipboard.writeText(`${v.text} — ${v.ref}`); toast('Copiado ✔'); }catch{ toast('No se pudo copiar'); }
-      };
-    }
-
-    function toast(t){
-      const el = document.createElement('div');
-      el.textContent = t;
-      el.style.cssText = 'position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#111a; color:#fff; padding:10px 14px; border-radius:12px; backdrop-filter:blur(10px); box-shadow:0 10px 30px rgba(0,0,0,.3); z-index:9999;';
-      document.body.appendChild(el);
-      setTimeout(()=>{ el.remove(); }, 1800);
-    }
-
-    // Eventos
-    const initialIndex = pickRandomIndex();
-    renderVerse(initialIndex);
-    document.getElementById('btnNuevo').addEventListener('click', ()=>{
-      let i = pickRandomIndex();
-      renderVerse(i);
-    });
-  </script>
+        mostrarVersiculo();
+    </script>
 </body>
 </html>
