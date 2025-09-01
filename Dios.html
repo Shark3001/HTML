@@ -3,76 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensajes Bíblicos</title>
+    <title>Mensaje de Dios para ti</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
         body {
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding: 0;
-            height: 100vh;
+            padding: 20px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
             text-align: center;
-            color: white;
-            font-family: Arial, sans-serif;
+            color: #fff;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+            background-size: cover;
             overflow: hidden;
+            position: relative;
+            animation: fadeIn 2s ease-in-out forwards;
         }
 
-        /* Video de fondo */
-        #video-fondo {
-            position: fixed;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .background-image {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Cubre toda la pantalla */
-            z-index: -1; /* Detrás del contenido */
+            background: radial-gradient(circle at center, rgba(255,255,255,0.05), rgba(0,0,0,0.5));
+            filter: blur(6px) brightness(0.7);
+            z-index: -1;
+            animation: slowZoom 20s ease-in-out infinite alternate;
         }
 
-        .mensaje {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-radius: 10px;
-            font-size: 1.5rem;
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
             max-width: 90%;
-            z-index: 1;
-            position: relative;
+            backdrop-filter: blur(12px);
         }
 
         h1 {
-            font-size: 2rem;
-            margin-bottom: 15px;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        #message {
+            font-size: 1.2em;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+            animation: slideIn 1s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        #verse {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-top: 15px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        .share-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            font-weight: 700;
+            color: #fff;
+            background-color: #25d366;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .share-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
     </style>
 </head>
 <body>
-    <!-- Video como fondo -->
-    <video id="video-fondo" autoplay muted loop playsinline>
-        <source src="Jesús.mp4" type="video/mp4">
-        Tu navegador no soporta video HTML5.
-    </video>
 
-    <div class="mensaje">
-        <h1>Mensaje Bíblico del Día</h1>
-        <p id="versiculo"></p>
+    <div class="background-image"></div>
+
+    <div class="container">
+        <h1>Hoy Dios te recuerda:</h1>
+        <p id="message"></p>
+        <p id="verse"></p>
+        <a id="whatsapp-share" class="share-button" href="#" target="_blank">
+            Compartir por WhatsApp
+        </a>
     </div>
 
     <script>
-        const versiculos = [
-            "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna. — Juan 3:16",
-            "Jehová es mi pastor; nada me faltará. — Salmo 23:1",
-            "Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar. — Mateo 11:28",
-            "El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente. — Salmo 91:1",
-            "Yo soy la luz del mundo; el que me sigue, no andará en tinieblas, sino que tendrá la luz de la vida. — Juan 8:12",
+        const verses = [
+            "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna. (Juan 3:16)",
+            "Todo lo puedo en Cristo que me fortalece. (Filipenses 4:13)",
+            "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia. (Isaías 41:10)",
+            "Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia. Reconócelo en todos tus caminos, y él enderezará tus veredas. (Proverbios 3:5-6)",
+            "Mas Dios muestra su amor para con nosotros, en que siendo aún pecadores, Cristo murió por nosotros. (Romanos 5:8)",
+            "El Señor es mi pastor; nada me faltará. (Salmos 23:1)",
+            "Y todo lo que pidiereis en oración, creyendo, lo recibiréis. (Mateo 21:22)",
+            "El Señor te bendiga, y te guarde; el Señor haga resplandecer su rostro sobre ti, y tenga de ti misericordia. (Números 6:24-25)",
+            "Por nada estéis afanosos, sino sean conocidas vuestras peticiones delante de Dios en toda oración y ruego, con acción de gracias. (Filipenses 4:6)",
+            "El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente. (Salmos 91:1)",
+            "Mas el fruto del Espíritu es amor, gozo, paz, paciencia, benignidad, bondad, fe, mansedumbre, templanza. (Gálatas 5:22-23)",
+            "Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos. (Mateo 18:20)",
+            "Encomienda a Jehová tus obras, Y tus pensamientos serán afirmados. (Proverbios 16:3)",
+            "Honra a tu padre y a tu madre, para que tus días se alarguen en la tierra que Jehová tu Dios te da. (Éxodo 20:12)",
+            "Porque somos sepultados juntamente con él para muerte por el bautismo, a fin de que como Cristo resucitó de los muertos por la gloria del Padre, así también nosotros andemos en vida nueva. (Romanos 6:4)",
+            "Lámpara es a mis pies tu palabra, Y lumbrera a mi camino. (Salmos 119:105)",
+            "Cercano está Jehová a todos los que le invocan, a todos los que le invocan de veras. (Salmos 145:18)",
+            "El temor de Jehová es el principio de la sabiduría; Los necios desprecian la sabiduría y la enseñanza. (Proverbios 1:7)",
+            "Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por mí. (Juan 14:6)",
+            "Alzaré mis ojos a los montes; ¿De dónde vendrá mi socorro? Mi socorro viene de Jehová, Que hizo los cielos y la tierra. (Salmos 121:1-2)",
+            "Mirad las aves del cielo, que no siembran, ni siegan, ni recogen en graneros; y vuestro Padre celestial las alimenta. ¿No valéis vosotros mucho más que ellas? (Mateo 6:26)",
+            "Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar. (Mateo 11:28)",
+            "El Señor es mi luz y mi salvación; ¿de quién temeré? (Salmos 27:1)",
+            "Mas el que bebiere del agua que yo le daré, no tendrá sed jamás; sino que el agua que yo le daré será en él una fuente de agua que salte para vida eterna. (Juan 4:14)",
+            "Y todo lo que hacéis, sea de palabra o de hecho, hacedlo todo en el nombre del Señor Jesús. (Colosenses 3:17)",
+            "Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios; no por obras, para que nadie se gloríe. (Efesios 2:8-9)",
+            "Amados, amémonos unos a otros; porque el amor es de Dios. (1 Juan 4:7)",
+            "El que cree en el Hijo tiene vida eterna; pero el que rehúsa creer en el Hijo no verá la vida. (Juan 3:36)",
+            "Si confesamos nuestros pecados, él es fiel y justo para perdonar nuestros pecados, y limpiarnos de toda maldad. (1 Juan 1:9)",
+            "Someteos, pues, a Dios; resistid al diablo, y huirá de vosotros. (Santiago 4:7)",
+            "Honra a Jehová con tus bienes, y con las primicias de todos tus frutos. (Proverbios 3:9)",
+            "Por nada estéis afanosos, sino sean conocidas vuestras peticiones delante de Dios en toda oración y ruego, con acción de gracias. (Filipenses 4:6)",
+            "Vengan a mí todos los que están cansados y cargados, y yo les daré descanso. (Mateo 11:28)",
+            "Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien, esto es, a los que conforme a su propósito son llamados. (Romanos 8:28)",
+            "Porque la paga del pecado es muerte, mas la dádiva de Dios es vida eterna en Cristo Jesús Señor nuestro. (Romanos 6:23)",
+            "Si vivimos por el Espíritu, andemos también por el Espíritu. (Gálatas 5:25)",
+            "Y si alguno de vosotros tiene falta de sabiduría, pídala a Dios, el cual da a todos abundantemente y sin reproche, y le será dada. (Santiago 1:5)",
+            "Y les dijo: Id por todo el mundo y predicad el evangelio a toda criatura. (Marcos 16:15)",
+            "Y el que no lleva su cruz y viene en pos de mí, no puede ser mi discípulo. (Lucas 14:27)",
+            "Mirad que nadie os engañe por medio de filosofías y huecas sutilezas, según las tradiciones de los hombres. (Colosenses 2:8)",
+            "Así que, hermanos, os ruego por las misericordias de Dios, que presentéis vuestros cuerpos en sacrificio vivo, santo, agradable a Dios, que es vuestro culto racional. (Romanos 12:1)",
+            "Así que la fe viene por el oír, y el oír por la palabra de Dios. (Romanos 10:17)",
+            "Pero el que persevere hasta el fin, éste será salvo. (Mateo 24:13)",
+            "Venid a mí, todos los que estáis trabajados y cargados, y yo os haré descansar. (Mateo 11:28)"
         ];
 
-        function mostrarVersiculo() {
-            const indice = Math.floor(Math.random() * versiculos.length);
-            document.getElementById('versiculo').innerText = versiculos[indice];
+        const messageEl = document.getElementById('message');
+        const verseEl = document.getElementById('verse');
+        const shareBtn = document.getElementById('whatsapp-share');
+
+        function getRandomVerse() {
+            const randomIndex = Math.floor(Math.random() * verses.length);
+            return verses[randomIndex];
         }
 
-        mostrarVersiculo();
+        function displayVerse() {
+            const verse = getRandomVerse();
+            const [text, reference] = verse.split(' (');
+            messageEl.textContent = text;
+            verseEl.textContent = '(' + reference;
+            updateShareLink(verse);
+        }
+
+        function updateShareLink(verse) {
+            const message = `Hoy Dios te recuerda:\n\n*${verse}*\n\n¡Que tengas un día bendecido! 🙏`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+            shareBtn.href = whatsappUrl;
+        }
+
+        displayVerse();
     </script>
+
 </body>
 </html>
+
 
