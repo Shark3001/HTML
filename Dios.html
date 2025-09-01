@@ -15,29 +15,30 @@
             text-align: center;
             color: white;
             font-family: Arial, sans-serif;
-            background: url('https://media.giphy.com/media/9J7tdYltWyXIY/giphy.gif') no-repeat center center fixed;
-            background-size: cover;
+            overflow: hidden;
         }
-        .overlay {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+
+        /* Video de fondo */
+        #video-fondo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ajusta el video para cubrir la pantalla */
+            z-index: -1; /* Para que quede detrás del contenido */
         }
-        .overlay img {
-            width: 150px;
-            height: auto;
-            border-radius: 15px;
-            opacity: 0.9;
-        }
+
         .mensaje {
             background: rgba(0, 0, 0, 0.6);
             padding: 20px;
             border-radius: 10px;
             font-size: 1.5rem;
             max-width: 90%;
-            position: relative;
             z-index: 1;
+            position: relative;
         }
+
         h1 {
             font-size: 2rem;
             margin-bottom: 15px;
@@ -45,9 +46,11 @@
     </style>
 </head>
 <body>
-    <div class="overlay">
-        <img src="https://media.giphy.com/media/3ohhwgh4XDXEjA8bU4/giphy.gif" alt="Jesús animado">
-    </div>
+    <!-- Video como fondo -->
+    <video id="video-fondo" autoplay muted loop playsinline>
+        <source src="Jesús.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+    </video>
 
     <div class="mensaje">
         <h1>Mensaje Bíblico del Día</h1>
